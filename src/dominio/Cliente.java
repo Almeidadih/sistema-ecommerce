@@ -2,12 +2,12 @@ package dominio;
 
 public class Cliente {
 
-    private String id;
-    private String nome;
-    private String email;
-    private String cep;
-    private TipoCliente tipo;
-    private TipoNotificacao tipoNotificacao;
+    private final String id;
+    private final String nome;
+    private final String email;
+    private final String cep;
+    private final TipoCliente tipo;
+    private final TipoNotificacao tipoNotificacao;
 
     public Cliente(String id, String nome, String email, String cep, TipoCliente tipo) {
         this.tipo = tipo;
@@ -21,35 +21,31 @@ public class Cliente {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getCep() {
         return cep;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
-    }
-
     public TipoCliente getTipo() {
         return tipo;
+    }
+
+    public TipoNotificacao getTipoNotificacao() {
+        return tipoNotificacao;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nome='" + nome +'\''+
+                ", tipo=" + tipo +
+                '}';
     }
 }

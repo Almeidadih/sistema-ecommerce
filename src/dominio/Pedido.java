@@ -3,6 +3,7 @@ package dominio;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 /*
 * Classe principal que representa um Pedido no e-commerce.
@@ -22,15 +23,31 @@ public class Pedido {
 
     public Pedido(String id, Cliente cliente, List<ItemPedido> itens, LocalDateTime dataHora, BigDecimal desconto, BigDecimal valorFrete,
                   StatusPedido status, DadosPagamento dadosPagamento, TipoFrete tipoFrete) {
-        this.id = id;
+        this.id = UUID.randomUUID().toString();
         this.cliente = cliente;
         this.itens = itens;
-        this.dataHora = dataHora;
-        this.desconto = desconto;
-        this.valorFrete = valorFrete;
-        this.status = status;
+        this.dataHora = LocalDateTime.now();
+        this.desconto = BigDecimal.ZERO;
+        this.valorFrete = BigDecimal.ZERO;
+        this.status = StatusPedido.AGUARDANDO_PAGAMENTO;
         this.dadosPagamento = dadosPagamento;
         this.tipoFrete = tipoFrete;
+    }
+
+    public BigDecimal calcularSubtotal() {
+        return itens.stream()
+                .map(ItemPedido::getSubtotal)
+                .reduce(BigDecimal.ZERO,BigDecimal::add);
+    }
+
+    public BigDecimal calcularValorTotal() {
+        return calcularSubtotal()
+                .subtract(desconto)
+                .add(valorFrete);
+    }
+
+    public boolean isAprovado() {
+        return this.status == StatusPedido.PAGAMENTO_APROVADO;
     }
 
     public String getId() {
@@ -93,15 +110,15 @@ public class Pedido {
         return dadosPagamento;
     }
 
-    public void setDadosPagamento(DadosPagamento dadosPagamento) {
-        this.dadosPagamento = dadosPagamento;
-    }
 
     public TipoFrete getTipoFrete() {
         return tipoFrete;
     }
 
-    public void setTipoFrete(TipoFrete tipoFrete) {
-        this.tipoFrete = tipoFrete;
+
+    @Override
+    public String toString() {
+        return String.format("Pedido #%s - Cliente: %s - Total: R$ %.2f" ,
+                id.substring(0,8),cliente.getNome(),calcularValorTotal());
     }
 }
