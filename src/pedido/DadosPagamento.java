@@ -1,4 +1,4 @@
-package pagamento;
+package pedido;
 
 import dominio.DadosCartao;
 
