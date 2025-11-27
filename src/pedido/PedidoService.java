@@ -3,6 +3,7 @@ package pedido;
 import desconto.DescontoService;
 import dominio.Pedido;
 import frete.FreteService;
+import notificacao.NotificacaoService;
 import pagamento.PagamentoService;
 
 import java.util.ArrayList;

@@ -1,5 +1,7 @@
 package dominio;
 
+import notificacao.factory.TipoNotificacao;
+
 public class Cliente {
 
     private final String id;

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /*
 * POLIMORFISMO através  de INTERFACE
 * */
-public class Desconto {
+public interface Desconto {
 
     /*
      * Calcula o desconto aplicavel ao pedido.

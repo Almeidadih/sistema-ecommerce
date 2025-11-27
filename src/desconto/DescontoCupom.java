@@ -26,7 +26,7 @@ public class DescontoCupom implements Desconto{
     }
 
     @Override
-    BigDecimal calcularDesconto(Pedido pedido) {
+    public BigDecimal calcularDesconto(Pedido pedido) {
         BigDecimal percentual = CUPONS_VALIDOS.get(codigoCupom);
 
         if (percentual != null) {
@@ -45,7 +45,7 @@ public class DescontoCupom implements Desconto{
     }
 
     @Override
-    String getDescricao() {
+    public String getDescricao() {
         return "Desconto por Cupom(" + codigoCupom + ")" ;
     }
 }

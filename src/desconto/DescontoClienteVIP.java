@@ -17,7 +17,7 @@ public class DescontoClienteVIP implements Desconto{
     private static final BigDecimal PERCENTUAL_DESCONTO = new BigDecimal("0.15");
 
     @Override
-    BigDecimal calcularDesconto(Pedido pedido) {
+    public BigDecimal calcularDesconto(Pedido pedido) {
         if (pedido.getCliente().getTipo() == TipoCliente.VIP) {
             BigDecimal desconto = pedido.calcularSubtotal().multiply(PERCENTUAL_DESCONTO);
             println("🌟 Desconto VIP aplicado: 15% = R$ " + desconto);
@@ -27,7 +27,7 @@ public class DescontoClienteVIP implements Desconto{
     }
 
     @Override
-    String getDescricao() {
+    public String getDescricao() {
         return "Desconto Cliente VIP(15%)";
     }
 }

@@ -12,7 +12,7 @@ public class DescontoPromocional implements Desconto {
     private static final BigDecimal VALOR_DESCONTO = new BigDecimal("50.00");
 
     @Override
-    BigDecimal calcularDesconto(Pedido pedido) {
+    public BigDecimal calcularDesconto(Pedido pedido) {
         if (pedido.calcularSubtotal().compareTo(VALOR_MINIMO) >= 0) {
             {
                 println("🎉 Desconto Promocional aplicado: R$ " + VALOR_DESCONTO);
@@ -24,7 +24,7 @@ public class DescontoPromocional implements Desconto {
 
 
     @Override
-    String getDescricao() {
+    public String getDescricao() {
     return "Desconto Promocional (R$ 50 acima de R% 500)";
     }
 }
