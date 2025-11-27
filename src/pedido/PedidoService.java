@@ -1,7 +1,9 @@
 package pedido;
 
+import desconto.DescontoService;
 import dominio.Pedido;
 import frete.FreteService;
+import pagamento.PagamentoService;
 
 import java.util.ArrayList;
 import java.util.List;

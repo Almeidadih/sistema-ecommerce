@@ -1,0 +1,38 @@
+package desconto;
+
+import dominio.Pedido;
+import dominio.TipoCliente;
+
+import java.math.BigDecimal;
+
+import static java.sql.DriverManager.println;
+
+/*
+* Estratégia CONCRETA: Desconto para Clientes Premium
+*
+* Regra de Negócio: 25% de desconto para clientes Premium
+* */
+public class DescontoClientePremium  implements Desconto {
+
+    private static final BigDecimal PERCENTUAL_DESCONTO = new BigDecimal("0.25");
+
+    @Override
+    BigDecimal calcularDesconto(Pedido pedido) {
+
+        if (pedido.getCliente().getTipo() == TipoCliente.PREMIUM) {
+            BigDecimal desconto = pedido.calcularSubtotal().multiply(PERCENTUAL_DESCONTO);
+            {
+                println("💎 Desconto Premium aplicado: 25% = R$ " + desconto);
+            }
+
+            return desconto;
+        }
+
+        return BigDecimal.ZERO;
+    }
+
+    @Override
+    String getDescricao() {
+        return "Desconto Cliente Premium (25%)";
+    }
+}
